@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="marumaru.sys.music.dao.QnaBoardMapper">
+<insert id="insertQnaBoard" parameterType="qboard">
+insert into qnaboard(bnum,custid,title,text,pos,depth)
+values(qnaboard_seq.nextval,#{custid},#{title},#{text},#{pos},#{depth})
+</insert>
+<update id="qnaAddHits" parameterType="int">
+update qnaboard set hits=hits+1 where bnum=#{bnum}
+</update>
+
+<select id="getQnaTotal" parameterType="string" resultType="int">
+select count(*) from qnaboard 
+<if test="_parameter !=null">
+where title like '%' || #{searchText} || '%'
+</if>
+</select>
+
+ <select id="qnaList" parameterType="string" resultType="qboard">
+ select 
+ 	bnum
+ 	,custid
+ 	,title
+ 	,text
+ 	, to_char(inputdate, 'YYYY-MM-DD') inputdate
+ 	,hits
+ 	,pos
+ 	,depth
+ from qnaboard 	
+ <if test="_parameter != null">
+ where 
+			title like '%' || #{searchText} || '%'
+ 	</if>
+ order by pos asc
+ </select>
+
+<select id="qnaboardList" resultType="qboard">
+select * from qnaboard order by pos asc
+
+
+</select>
+
+
+
+<delete id="deleteQnaBoard" parameterType="qboard">
+delete qnaboard where bnum=#{bnum} and custid=#{custid}
+</delete>
+삭제 할 게시글 관련 re 게시판들 삭제
+<delete id="deletePosQnaBoard" parameterType="int">
+
+delete qnaboard where pos=#{pos}
+
+</delete>
+
+<update id="updateQnaBoard" parameterType="qboard">
+update qnaboard set title=#{title}, text=#{text} where bnum=#{bnum} and custid=#{custid}
+</update>
+
+
+
+
+
+
+<update id="QnaBoardposAll">
+update qnaboard set pos =pos+1
+</update>
+
+<select id="searchQnaBoard" parameterType="int" resultType="qboard">
+select 
+ 	bnum
+ 	,custid
+ 	,title
+ 	,text
+ 	, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate
+ 	,hits
+ 	,pos
+ 	,depth
+ 	 from qnaboard where bnum=#{bnum}
+</select>
+
+<update id="QnaBoardseatMake" parameterType="int">
+update qnaboard set pos =pos+1 where pos > #{pos}
+</update>
+
+<insert id="insertQnaReply" parameterType="qboard">
+insert into qnareply(rnum,bnum,custid,text,pos,depth)values
+(qnareply_seq.nextval,#{bnum},#{custid},#{text},#{pos},#{depth})
+</insert>
+리플 삭제
+	<delete id="deleteQnaReply" parameterType="qreply">
+		delete
+		from
+			qnareply
+		where
+			rnum = #{rnum}
+			and custid = #{custid}
+	</delete>
+
+삭제 할 리플 관련 re 리플들 삭제	
+	<delete id="deletePosQnaReply" parameterType="int">
+	delete from qnareply where pos=#{pos}
+	 </delete>
+	
+	
+	
+	현재 글의 리플 목록
+	<select id="listQnaReply" parameterType="int" resultType="qreply">
+		select 
+			rnum
+			, bnum
+			, custid
+			, text
+			, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate
+			,pos
+			,depth
+		from 
+			qnareply
+		where
+			bnum = #{num}
+		order by pos asc
+	</select>
+parent insert 후 처리
+<update id="QnaReplyposAll">
+update qnareply set pos=pos+1 
+
+</update>
+부모글 pos 알기위한 처리
+<select id="searchQnaReply" parameterType="int" resultType="qreply">
+select *from qnareply where rnum=#{rnum}
+
+</select>
+
+자식글 등록하기위해 자식의 부모글보다 pos가 높은 글들 pos+1 (자식글 넣기 위한 자리 만들기)
+<update id="QnaReplyseatMake" parameterType="int">
+update qnareply set pos=pos+1 where pos > #{pos}
+</update>
+
+
+
+	리플 수정
+	<update id="updateQnaReply" parameterType="qreply">
+		update
+			qnareply
+		set
+			text = #{text}
+		where
+			rnum = #{rnum}
+			and custid = #{custid}
+	</update>
+
+	pos로 게시글 찾기
+ <select id="searchPosQnaBoard" parameterType="int" resultType="qboard">
+ select *from qnaboard where pos =#{pos}
+ 
+ </select>
+
+
+	pos로 댓글 찾기
+<select id="searchPosQnaReply" parameterType="int" resultType="qreply">
+select *from qnareply where pos =#{pos}
+
+</select>
+
+
+
+
+</mapper>
+ -->
+
+
